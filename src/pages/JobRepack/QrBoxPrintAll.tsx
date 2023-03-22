@@ -24,6 +24,7 @@ import {
 } from "antd";
 import QRCode from "react-qr-code";
 import "./JobRepack.css";
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
 
 const print_QR_Code = () => {
   window.print();
@@ -64,14 +65,17 @@ const QrCodePrint: React.FC<any> = (props) => {
         </div>
 
         {obj.map((item: any) => {
-          const code111 = [
+          const object = [
             {
               QR_NO: item.QR_NO,
               JOB_ID: item.JOB_ID,
               Item_ID: item.FG_ITEM_ID,
             },
           ];
-          const Code1 = JSON.stringify(code111);
+          const codeJson = JSON.stringify(object);
+
+          let encoded = base64_encode(codeJson);
+          const url_qr = "https://www.google.com/file_name?info="+encoded;
 
           return (
             <>
@@ -85,7 +89,7 @@ const QrCodePrint: React.FC<any> = (props) => {
                   </div>
                   <div style={{marginLeft:32}}>
                     <QRCode
-                        value={Code1}
+                        value={url_qr}
                         size={210}
                         style={{ height: "auto", maxWidth: "100%", width: "80%" }}
                         viewBox={`0 0 256 256`}

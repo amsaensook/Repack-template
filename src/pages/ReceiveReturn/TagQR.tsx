@@ -43,8 +43,6 @@ import {
   useCreateTagReturn,
 } from "../../hooks/useTagReturn";
 
-import QrCodePrint from "./QrCodePrint";
-import QrCodePrintAll from "./QrCodePrintAll";
 
 type EditableTableProps = Parameters<typeof Table>[0];
 

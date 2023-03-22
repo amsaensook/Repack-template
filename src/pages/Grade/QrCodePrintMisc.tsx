@@ -30,7 +30,6 @@ const obj = JSON.parse(localStorage.getItem("qr") || "{}");
 
 let code_json = [];
 for (var i = 0; i < obj.QTY; i++) {
-  console.log('TEst');
   code_json.push({ITEM_CODE: obj.ITEM_CODE });
 }
 
@@ -59,7 +58,7 @@ for (var i = 0; i < obj.QTY; i++) {
           ];
           const CodeQR = JSON.stringify(codeNew);
           let encoded = base64_encode(CodeQR);
-          const url_qr = "https://www.google.com/search?q="+encoded;
+          const url_qr = "https://www.google.com/file_name?info="+encoded;
           // let decoded  = base64_decode(encoded);
           // const url_qr1 = "https://www.google.com/search?q="+decoded;
 
@@ -77,8 +76,6 @@ for (var i = 0; i < obj.QTY; i++) {
                         style={{ height: "auto", maxWidth: "100%", width: "80%" }}
                         viewBox={`0 0 256 256`}
                       />
-                      <p>{url_qr}</p>
-                      {/* <p>{url_qr1}</p> */}
                       
                   </div>
                   

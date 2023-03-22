@@ -5,6 +5,7 @@ import { Button, Card } from "antd";
 import { PrinterOutlined} from "@ant-design/icons";
 import QRCode from "react-qr-code";
 import "./ReceivePart.css";
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
 
 const print_QR_Code = () => {
   window.print();
@@ -24,14 +25,6 @@ const QrCodePrint: React.FC<any> = (props) => {
 
   const obj = JSON.parse(localStorage.getItem("qr") || "{}");
   console.log('obj =',obj);
-  // const code111 = [
-  //   { QR_NO: obj.QR_NO, 
-  //     Tag_ID: obj.Tag_ID, 
-  //     Item_ID: obj.Item_ID,
-  //     Series:obj.Series || null, 
-  //   },
-  // ];
-  // const Code1 = JSON.stringify(code111);
 
 
   let arr = [{}];
@@ -86,15 +79,19 @@ const QrCodePrint: React.FC<any> = (props) => {
         </div>
 
         {arr.map((item: any) => {
-          const code111 = [
+          const object = [
             { QR_NO: item.QR_NO, 
               Tag_ID: item.Tag_ID, 
               Item_ID: item.Item_ID,
               Series:item.Series || null,
             },
           ];
-          const Code1 = JSON.stringify(code111);
+          const codeJson = JSON.stringify(object);
           let text = '';
+
+          let encoded = base64_encode(codeJson);
+          const url_qr = "https://www.google.com/file_name?info="+encoded;
+          
 
           if(obj.Product_ID == 4){
             text = item.Lot_No + ' (' + item.Series + ')';
@@ -114,7 +111,7 @@ const QrCodePrint: React.FC<any> = (props) => {
                   </div>
                   <div style={{marginLeft:32}}>
                     <QRCode
-                        value={Code1}
+                        value={url_qr}
                         size={210}
                         style={{ height: "auto", maxWidth: "100%", width: "80%" }}
                         viewBox={`0 0 256 256`}
