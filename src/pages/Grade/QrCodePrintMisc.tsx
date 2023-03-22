@@ -5,6 +5,7 @@ import { Button, Card } from "antd";
 import { PrinterOutlined} from "@ant-design/icons";
 import QRCode from "react-qr-code";
 import "./Grade.css";
+import {decode as base64_decode, encode as base64_encode} from 'base-64';
 
 const print_QR_Code = () => {
   window.print();
@@ -57,6 +58,10 @@ for (var i = 0; i < obj.QTY; i++) {
             },
           ];
           const CodeQR = JSON.stringify(codeNew);
+          let encoded = base64_encode(CodeQR);
+          const url_qr = "https://www.google.com/search?q="+encoded;
+          // let decoded  = base64_decode(encoded);
+          // const url_qr1 = "https://www.google.com/search?q="+decoded;
 
           return (
             <>
@@ -67,11 +72,14 @@ for (var i = 0; i < obj.QTY; i++) {
                   </div>
                   <div style={{marginLeft:32}}>
                     <QRCode
-                        value={CodeQR}
+                        value={url_qr}
                         size={210}
                         style={{ height: "auto", maxWidth: "100%", width: "80%" }}
                         viewBox={`0 0 256 256`}
                       />
+                      <p>{url_qr}</p>
+                      {/* <p>{url_qr1}</p> */}
+                      
                   </div>
                   
                 </div>
