@@ -56,7 +56,7 @@ const obj = JSON.parse(localStorage.getItem("qr") || "{}");
           let text = '';
 
           let encoded = base64_encode(codeJson);
-          const url_qr = "https://www.google.com/file_name?info="+encoded;
+          const url_qr = "http://119.59.105.14/toto-warranty/service?info="+encoded;
 
           if(item.Product_ID == 4){
             text = item.Lot_No + ' (' + item.Series + ')';

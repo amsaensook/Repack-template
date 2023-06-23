@@ -58,7 +58,7 @@ for (var i = 0; i < obj.QTY; i++) {
           ];
           const CodeQR = JSON.stringify(codeNew);
           let encoded = base64_encode(CodeQR);
-          const url_qr = "https://www.google.com/file_name?info="+encoded;
+          const url_qr = "http://119.59.105.14/toto-warranty/service?info="+encoded;
           // let decoded  = base64_decode(encoded);
           // const url_qr1 = "https://www.google.com/search?q="+decoded;
 

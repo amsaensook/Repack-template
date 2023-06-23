@@ -75,7 +75,7 @@ const QrCodePrint: React.FC<any> = (props) => {
           const codeJson = JSON.stringify(object);
 
           let encoded = base64_encode(codeJson);
-          const url_qr = "https://www.google.com/file_name?info="+encoded;
+          const url_qr = "http://119.59.105.14/toto-warranty/service?info="+encoded;
 
           return (
             <>
